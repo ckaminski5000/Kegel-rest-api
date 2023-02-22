@@ -1,6 +1,17 @@
+const mongoose = require("mongoose");
+const logger = require("./logger");
 
+const url = process.env.MONGO_URI;
+const port = process.env.PORT;
 
-const { MongoClient } = require("mongodb");
+mongoose.set("strictQuery", false);
+
+mongoose
+  .connect(url)
+  .then(() => console.log("Connected to Mongo"))
+  .catch((e) => console.log(e));
+
+/*const { MongoClient } = require("mongodb");
  
 const url = process.env.MONGO_URI;
 const client = new MongoClient(url);
@@ -19,4 +30,4 @@ run().catch(console.dir);
 
 module.exports = {
   client
-}
+};*/

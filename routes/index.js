@@ -1,9 +1,17 @@
 var express = require('express');
+const userRoute = require('./user.route');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+
+const defaultRoutes = [
+  {
+    path: '/users',
+    route: userRoute
+  }
+];
+
+defaultRoutes.forEach( route => {
+  router.use(route.path, route.route)
 });
 
 module.exports = router;
